@@ -7,9 +7,8 @@ from cart.cart_services import Cart
 
 def order_create(request):
     cart = Cart(request)
-    if request.method == 'POST':  # если форма первый раз отображается то метод будет None, и тогда мы перейдем в else для отображения новой формы
+    if request.method == 'POST':
         form = OrderCreateForm(request.POST)
-        # отправка данных на сервер
         if form.is_valid():
             order = form.save()
             for item in cart:
@@ -23,7 +22,7 @@ def order_create(request):
             send_mail('Замовлення Оформлено',
                       'Увійдіть в адмін панель, щоб переглянути нове замовлення.',
                       'roman.melnuk@icloud.com',
-                      ['roman.melnuk@icloud.com '], fail_silently=True)  # ошибка будет игнорироваться, программа продолжит работу
+                      ['roman.melnuk@icloud.com '], fail_silently=True)
         return render(request, 'orders/created.html', {'order': order})
     else:
         form = OrderCreateForm()

@@ -101,7 +101,6 @@ class ProductModelTest(TestCase):
         self.assertTrue(product.available)
 
     def test_product_connect_to_category(self):
-        """Проверяем, что товар был создан успешно и связан с правильной категорией"""
         Product.objects.all().delete()
         category = Category.objects.create(name='Test2 Category', slug='test2-category')
 

@@ -7,7 +7,6 @@ from .models import Review
 
 
 class RegisterUserForm(UserCreationForm):
-    """Форма регистрации пользователей"""
     username = forms.CharField(label='Логін', widget=forms.TextInput(attrs={'class': 'form-input'}))
     email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-input'}))
     password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-input'}), min_length=8,
@@ -30,18 +29,16 @@ class RegisterUserForm(UserCreationForm):
         return password1
 
     class Meta:
-        model = User  # связываем форму с встроенной моделью User
+        model = User
         fields = ('username', 'email', 'password1', 'password2')
 
 
 class LoginUserForm(AuthenticationForm):
-    """Форма для аутентификации потльзователей"""
     username = forms.CharField(label='Логін', widget=forms.TextInput(attrs={'class': 'form-input'}))
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
 
 
 class FeedbackForm(forms.Form):
-    """Форма обратной связи"""
     name = forms.CharField(label='Имя', max_length=100)
     email = forms.EmailField(label='Email')
     content = forms.CharField(label='Повідомлення', widget=forms.Textarea(attrs={'cols': 30, 'rows': 4}))
@@ -49,7 +46,6 @@ class FeedbackForm(forms.Form):
 
 
 class ReviewForm(forms.ModelForm):
-    """Форма для оставления отзыва на товар"""
 
     class Meta:
         model = Review

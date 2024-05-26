@@ -13,7 +13,7 @@ class OrderAdmin(admin.ModelAdmin):
                     'email', 'address', 'postal_code',
                     'city', 'paid', 'updated']
     list_filter = ['paid', 'created', 'updated']
-    inlines = [OrderItemInline]  # все связанные модели можно редактировать в одном месте.
+    inlines = [OrderItemInline]
 
 
 admin.site.register(Order, OrderAdmin)

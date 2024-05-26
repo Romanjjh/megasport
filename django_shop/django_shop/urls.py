@@ -8,7 +8,7 @@ urlpatterns = [
     path('cart/', include('cart.urls', namespace='cart')),
     path('orders/', include('orders.urls')),
     path('captcha/', include('captcha.urls')),
-    path('', include('shop.urls', namespace='shop')),  # копируем все urls из приложения shop
+    path('', include('shop.urls', namespace='shop')),
 
 ]
 
@@ -19,6 +19,4 @@ if settings.DEBUG:
                       path('__debug__/', include(debug_toolbar.urls)),
                   ] + urlpatterns
 
-    # в режиме отладки добавляем к нашим маршрутам еще один маршрут для статических данных, графических файлов
-    # вторым аргументом тут идет папка, где будут идти файлы. На реальных серверах это не нужно, так как уже все настроено
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

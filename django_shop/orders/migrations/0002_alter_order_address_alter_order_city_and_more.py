@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='order',
             name='last_name',
-            field=models.CharField(max_length=60, verbose_name='Фамілія'),
+            field=models.CharField(max_length=60, verbose_name='Прізвище'),
         ),
         migrations.AlterField(
             model_name='order',

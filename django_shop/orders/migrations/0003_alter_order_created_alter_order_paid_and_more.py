@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='order',
             name='paid',
-            field=models.BooleanField(default=False, verbose_name='Чи оплачено замовлення'),
+            field=models.BooleanField(default=False, verbose_name='Чи оплачено замовлення?'),
         ),
         migrations.AlterField(
             model_name='order',

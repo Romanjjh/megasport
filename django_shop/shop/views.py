@@ -19,14 +19,11 @@ class ShopHome(DataMixin, ListView):
     context_object_name = 'products'
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)  # вызываем родительский метод, чтобы получить базовый контекст
-        context['title'] = "Головна"  # добавляем к контексту свои данные, полученные с помощью метода get_user_context
+        context = super().get_context_data(**kwargs)
+        context['title'] = "Головна"
         return dict(list(context.items()))
 
     def get_queryset(self):
-        """Добавляем для оптимизации нагрузки на БД. Благодаря методу select_related у нас происходит
-        жадная, а не ленивая загрузка связанных данных  по внешнему FK. В моем случае я уменьшаю количество запросов
-        по категориям на главной странице с 11 до 5 (так как в каждом товаре указывается категория)."""
         return Product.objects.all().select_related('category')
 
 
@@ -67,7 +64,7 @@ class ShopCategory(DataMixin, ListView):
     model = Product
     template_name = 'shop/product/list.html'
     context_object_name = 'products'
-    allow_empty = False  # генерация ошибки 404 если  нет товаров в категории
+    allow_empty = False
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -89,20 +86,13 @@ class RegisterUser(DataMixin, CreateView):
         return dict(list(context.items()) + list(user_context.items()))
 
     def form_valid(self, form):
-        """Встроенный метод который вызывается при успешной регистрации.
-        Нужен чтобы зарегистрированного пользователя автоматически авторизовывали.
-        Отличие от атрибута success_url в том, что через переменную мы не можем
-        после успешной регистрации сразу авторизовать, а также  переменную можно только статический
-        адрес указать. Если ссылка формируется динамически - только метод подойдет.
-        К примеру, Если я например делаю сайт, где у зарегистрированного пользователя
-        есть личная страница,  и я хочу что бы она была по адресу mysite/accounts/<никнейм пользователя>"""
-        user = form.save()  # самостоятельно сохраняем пользователя в нашу модель в БД.
-        login(self.request, user)  # функция для авторизации пользователя
+        user = form.save()
+        login(self.request, user)
         return redirect('shop:product_list')
 
 
 class LoginUser(DataMixin, LoginView):
-    form_class = LoginUserForm  # тут мы указываем свою кастомную форму. Изначально пользовались встроенной - класс AutenticationForm
+    form_class = LoginUserForm
     template_name = 'shop/product/login.html'
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -125,7 +115,7 @@ class FeedbackFormView(DataMixin, FormView):
         return dict(list(context.items()) + list(user_context.items()))
 
     def form_valid(self, form):
-        logger.debug(form.cleaned_data)  # если форма заполнена корректно, то при отправке логируем данные из формы
+        logger.debug(form.cleaned_data)
         return redirect('shop:product_list')
 
 
@@ -134,5 +124,5 @@ def about(request):
 
 
 def logout_user(request):
-    logout(request)  # стандартная ф-ия Джанго для выхода из авторизации
+    logout(request)
     return redirect('shop:login')

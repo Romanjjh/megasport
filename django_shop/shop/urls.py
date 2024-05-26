@@ -2,7 +2,6 @@ from django.urls import path
 
 from .views import *
 
-# используем namespacing для удобства. Теперь, к примеру, the product_list URL будет доступен, как shop:product_list в других частях Django проекта.
 app_name = 'shop'
 
 urlpatterns = [

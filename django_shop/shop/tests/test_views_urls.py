@@ -22,12 +22,12 @@ class TestShopHome(TestCase):
         response = self.client.get(reverse('shop:product_list'))
         self.assertEqual(response.status_code, 200)
         self.assertQuerysetEqual(response.context['products'], [self.product],
-                                 transform=lambda x: x)  # через lambda идет преобразование в  [<Product: Product>]
+                                 transform=lambda x: x)
 
     def test_context_data(self):
         response = self.client.get(reverse('shop:product_list'))
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context['title'], 'Главная')
+        self.assertEqual(response.context['title'], 'Головна')
         self.assertIn('products', response.context)
         self.assertTrue(response.context['products'].count() > 0)
 
@@ -81,7 +81,7 @@ class ProductDetailViewTestCase(TestCase):
     def test_detail_view_context_cart_product_form(self):
         response = self.client.get(self.detail_url)
         self.assertIsInstance(response.context['cart_product_form'],
-                              CartAddProductForm)  # проверка типа объекта на соответствие заданному классу
+                              CartAddProductForm)
 
     def test_detail_view_context_category(self):
         response = self.client.get(self.detail_url)

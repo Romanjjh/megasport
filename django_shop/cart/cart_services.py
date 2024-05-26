@@ -1,4 +1,3 @@
-"""Бизнес-логика для вьюх приложения cart вынесена сюда"""
 from decimal import Decimal
 from typing import Dict, List, Union
 
@@ -17,15 +16,9 @@ class Cart:
         self.cart = cart
 
     def get_cart_total_price(self, cart_items: List[Dict[str, Union[str, int, Decimal]]]) -> Decimal:
-        """
-        Вычисляет общую стоимость всех товаров в корзине.
-        """
         return sum(Decimal(item['total_price']) for item in cart_items)
 
     def get_cart_items_with_products(self):
-        """
-        Возвращает список словарей, содержащий товары в корзине и их соответствующие объекты Product.
-        """
         product_ids = self.cart.keys()
         products = Product.objects.filter(id__in=product_ids)
         cart_items = []
@@ -40,9 +33,6 @@ class Cart:
         return cart_items
 
     def add_to_cart(self, product_id: int, quantity: int, overwrite_qty: bool = False) -> None:
-        """
-        Добавляет товар в корзину или обновляет его количество, если товар уже в корзине.
-        """
         product = get_object_or_404(Product, id=product_id)
         product_id = str(product_id)
 
@@ -57,9 +47,6 @@ class Cart:
         self.session.modified = True
 
     def remove_from_cart(self, product_id: int) -> None:
-        """
-        Удаляет товар из корзины.
-        """
         product_id = str(product_id)
 
         if product_id in self.cart:
@@ -67,16 +54,10 @@ class Cart:
             self.session.modified = True
 
     def clear_cart(self) -> None:
-        """
-        Очищает корзину.
-        """
         self.session[settings.CART_ID] = {}
         self.session.modified = True
 
     def get_cart(self) -> Dict[str, Dict[str, Union[str, int]]]:
-        """
-        Возвращает корзину из сессии или пустой словарь, если ее нет.
-        """
         return self.session.get(settings.CART_ID, {})
 
     def __iter__(self):

@@ -25,7 +25,7 @@ class RegisterUserFormTest(TestCase):
         form = RegisterUserForm(data=invalid_data)
         self.assertFalse(form.is_valid())
         self.assertIn('email',
-                      form.errors)  # Если ключ 'email' есть в form.errors, значит, при валидации формы возникла ошибка в поле 'email'.
+                      form.errors)
 
     def test_form_invalid_passwords(self):
         invalid_data = self.valid_data.copy()
@@ -59,43 +59,26 @@ class LoginUserFormTest(TestCase):
         }
 
     def test_login_form_valid(self):
-        """Тест успешной авторизации"""
         form = LoginUserForm(data=self.valid_data)
         self.assertTrue(form.is_valid())
 
     def test_login_form_invalid(self):
-        """Тест неуспешной авторизации"""
         form = LoginUserForm(data=self.invalid_data)
         self.assertFalse(form.is_valid())
 
     def test_login_view_valid(self):
-        """Тест успешной авторизации через view"""
         response = self.client.post(reverse('shop:login'), data=self.valid_data,
-                                    follow=True)  # follow=True означает, что приложение должно следовать любым редиректам, которые могут быть выполнены в процессе выполнения запроса.
+                                    follow=True)
         user = authenticate(username=self.valid_data['username'], password=self.valid_data['password'])
         self.assertTrue(user.is_authenticated)
         self.assertRedirects(response, reverse('shop:product_list'))
 
     def test_login_view_invalid(self):
-        """Тест неуспешной авторизации через view"""
         response = self.client.post(reverse('shop:login'), data=self.invalid_data, follow=True)
         user = authenticate(username=self.invalid_data['username'], password=self.invalid_data['password'])
         self.assertIsNone(user)
         self.assertContains(response,
-                            ', введите правильные имя пользователя и пароль. Оба поля могут быть чувствительны к регистру.')
-
-
-class FeedbackFormTest(TestCase):
-    # НЕВАЛИДНЫЙ ТЕСТ ИЗ-ЗА КАПТЧИ
-    # def test_valid_feedback_form_submission(self):
-    #     form_data = {
-    #         'name': 'Test2 User',
-    #         'email': 'test2@example.com',
-    #         'content': 'Test message',
-    #         'capatcha': 'PASSED',
-    #     }
-    #     form = FeedbackForm(data=form_data)
-    #     self.assertTrue(form.is_valid())
+                            'Enter correct data')
 
     def test_invalid_feedback_form(self):
         form_data = {
@@ -116,19 +99,6 @@ class FeedbackFormTest(TestCase):
 
         form = response.context['form']
         self.assertIsInstance(form, FeedbackForm)
-
-    # НЕВАЛИДНЫЙ ТЕСТ ИЗ-ЗА КАПТЧИ
-    # def test_valid_feedback_form_submission(self):
-    #     # form_data = {
-    #     #     'name': 'Test User',
-    #     #     'email': 'test@example.com',
-    #     #     'content': 'Test message',
-    #     #     'capatcha': 'PASSED',
-    #     # }
-    #     # response = self.client.post(reverse('shop:feedback'), data=form_data)
-    #     # # self.assertRedirects(response, reverse('shop:product_list'))
-    #     # self.assertRedirects(response, reverse('shop:product_list') + '?sent=True')
-    #     # # self.assertEqual(response, reverse('shop:product_list') + '?sent=True')
 
     def test_invalid_feedback_form_submission(self):
         form_data = {

@@ -78,7 +78,6 @@
     {% endblock mainmenu %}
     <!--End Navbar-->
 
-    <!-- Заголовок с брендом-->
     <header class="bg-dark py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
@@ -87,13 +86,11 @@
             </div>
         </div>
     </header>
-    <!-- Конец заголовка-->
 
     <div id="content">
         {% block content %} {% endblock %}
     </div>
 
-    <!-- Пагинация -->
     <br>
     {% if page_obj.has_other_pages %}
     <nav aria-label="...">
@@ -122,7 +119,6 @@
         </ul>
     </nav>
     {% endif %}
-    <!-- Конец пагинации -->
 
 </div>
 

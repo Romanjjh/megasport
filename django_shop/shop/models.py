@@ -5,13 +5,11 @@ from django.core.exceptions import ValidationError
 
 
 class Category(models.Model):
-    """Модель для категорий товаров"""
     name = models.CharField(max_length=255, verbose_name='Имя категорії')
     slug = models.SlugField(unique=True)
 
     class Meta:
-        """Используем для задания параметров в админке, без необходимости добавления новых полей в саму модель. """
-        ordering = ('name',)  # сортировка применяется и в отображении в админке и в шаблонах
+        ordering = ('name',)
         verbose_name = 'Категорії'
         verbose_name_plural = 'Категорії'
 
@@ -33,20 +31,18 @@ class Product(models.Model):
     available = models.BooleanField(default=True, verbose_name='Доступність')
 
     class Meta:
-        verbose_name = 'Товари'  # отображение названия в админке
-        verbose_name_plural = 'Товари'  # отображение названия в админке
+        verbose_name = 'Товари'
+        verbose_name_plural = 'Товари'
         ordering = ('title',)
 
     def __str__(self):
         return self.title
 
-    # self ссылка на ЭК модели. Через self обращаемся к нужному атрибуту для формирования динамического url и использования в шаблонах.
     def get_absolute_url(self):
         return reverse('shop:product_detail', args=[self.category.slug,
-                                                    self.slug])  # c помощью reverse формируем маршурут с именем shop:product_detail, для этого дополнитнительно  передаем нужные параметры
+                                                    self.slug])
 
     def get_average_review_score(self):
-        """Вычисляем средний рейтинг товара. self.reviews возвращает все связанные объекты Review для данного объекта Product"""
         average_score = 0.0
         if self.reviews.count() > 0:
             total_score = sum([review.rating for review in self.reviews.all()])
@@ -55,7 +51,6 @@ class Product(models.Model):
 
 
 class Review(models.Model):
-    """Модель отзывов."""
     product = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE, verbose_name='Продукт')
     author = models.CharField(max_length=50, verbose_name='Автор')
     rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], verbose_name='Рейтинг')
