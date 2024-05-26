@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='order',
             name='city',
-            field=models.CharField(max_length=100, verbose_name='Город'),
+            field=models.CharField(max_length=100, verbose_name='Місто'),
         ),
         migrations.AlterField(
             model_name='order',
@@ -28,16 +28,16 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='order',
             name='first_name',
-            field=models.CharField(max_length=60, verbose_name='Имя'),
+            field=models.CharField(max_length=60, verbose_name='Імя'),
         ),
         migrations.AlterField(
             model_name='order',
             name='last_name',
-            field=models.CharField(max_length=60, verbose_name='Фамилия'),
+            field=models.CharField(max_length=60, verbose_name='Фамілія'),
         ),
         migrations.AlterField(
             model_name='order',
             name='postal_code',
-            field=models.CharField(max_length=30, verbose_name='Почтовый индекс'),
+            field=models.CharField(max_length=30, verbose_name='Почтовий індекс'),
         ),
     ]

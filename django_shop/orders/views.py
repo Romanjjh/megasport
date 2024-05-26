@@ -20,10 +20,10 @@ def order_create(request):
                     quantity=item['quantity']
                 )
             cart.clear_cart()
-            send_mail('Заказ Оформлен',
-                      'Войдите в админ панель, что бы просмотреть новый заказ.',
-                      'gipsme123123123@gmail.com',
-                      ['gipsme123123123@gmail.com '], fail_silently=True)  # ошибка будет игнорироваться, программа продолжит работу
+            send_mail('Замовлення Оформлено',
+                      'Увійдіть в адмін панель, щоб переглянути нове замовлення.',
+                      'roman.melnuk@icloud.com',
+                      ['roman.melnuk@icloud.com '], fail_silently=True)  # ошибка будет игнорироваться, программа продолжит работу
         return render(request, 'orders/created.html', {'order': order})
     else:
         form = OrderCreateForm()

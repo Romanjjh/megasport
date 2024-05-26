@@ -20,7 +20,7 @@ class ShopHome(DataMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)  # вызываем родительский метод, чтобы получить базовый контекст
-        context['title'] = "Главная"  # добавляем к контексту свои данные, полученные с помощью метода get_user_context
+        context['title'] = "Головна"  # добавляем к контексту свои данные, полученные с помощью метода get_user_context
         return dict(list(context.items()))
 
     def get_queryset(self):
@@ -49,7 +49,7 @@ class ProductDetailView(DataMixin, DetailView):
 
         if review_form.is_valid():
             cleaned_form = review_form.cleaned_data
-            author_name = "Анонимный пользователь"
+            author_name = "Анонімний користувач"
             Review.objects.create(
                 product=product,
                 author=author_name,
@@ -71,7 +71,7 @@ class ShopCategory(DataMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Категория - ' + str(context['products'][0].category).upper()
+        context['title'] = 'Категорія - ' + str(context['products'][0].category).upper()
         return dict(list(context.items()))
 
     def get_queryset(self):
@@ -84,7 +84,7 @@ class RegisterUser(DataMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        user_context = self.get_user_context(title='Регистрация')
+        user_context = self.get_user_context(title='Реєстрація')
         context['form_first'] = RegisterUser.form_class
         return dict(list(context.items()) + list(user_context.items()))
 
@@ -107,7 +107,7 @@ class LoginUser(DataMixin, LoginView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        user_context = self.get_user_context(title='Войти')
+        user_context = self.get_user_context(title='Війти')
         return dict(list(context.items()) + list(user_context.items()))
 
     def get_success_url(self):
@@ -120,7 +120,7 @@ class FeedbackFormView(DataMixin, FormView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        user_context = self.get_user_context(title='Обратная связь')
+        user_context = self.get_user_context(title='Зворотній звязок')
         context['form_feedback'] = FeedbackFormView.form_class
         return dict(list(context.items()) + list(user_context.items()))
 

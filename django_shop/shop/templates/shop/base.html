@@ -24,7 +24,7 @@
         <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search fixed-top bg-light">
             <div class="container">
                 <a class="navbar-brand text-dark" href="{% url 'shop:product_list' %}">
-                    <span style="color:#0d6efd"><b>Sport shop</b></span>
+                    <span style="color:#0d6efd"><b>MegaSport</b></span>
                 </a>
                 <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -33,7 +33,7 @@
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
-                            <a class="dropdown-toggle nav-link dropdown-toggle text-dark" data-toggle="dropdown" aria-expanded="false" href="#">Категории </a>
+                            <a class="dropdown-toggle nav-link dropdown-toggle text-dark" data-toggle="dropdown" aria-expanded="false" href="#">Категорії </a>
                             <div class="dropdown-menu" role="menu">
                                 {% for c in categories %}
                                 <a class="dropdown-item" role="presentation" href="{{ c.get_absolute_url }}">{{ c.name }}</a>
@@ -41,20 +41,20 @@
                             </div>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active text-dark" href="{% url 'shop:feedback' %}">Обратная связь</a>
+                            <a class="nav-link active text-dark" href="{% url 'shop:feedback' %}">Зворотній звязок</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active text-dark" href="{% url 'shop:about' %}">О нас</a>
+                            <a class="nav-link active text-dark" href="{% url 'shop:about' %}">Про нас</a>
                         </li>
                     </ul>
                     <form class="form-inline mr-auto" target="_self">
                     </form>
                     {% if request.user.is_authenticated %}
                     <span style="color:#4169E1;">{{ user.username }} &nbsp</span>
-                    <a class="btn btn-light action-button" role="button" href="{% url 'shop:logout' %}">Выйти</a>
+                    <a class="btn btn-light action-button" role="button" href="{% url 'shop:logout' %}">Вийти</a>
                     {% else %}
-                    <a class="btn btn-light action-button" role="button" href="{% url 'shop:login' %}">Войти</a>&nbsp
-                    <a class="btn btn-light action-button" role="button" href="{% url 'shop:register' %}">Зарегистрироваться</a>
+                    <a class="btn btn-light action-button" role="button" href="{% url 'shop:login' %}">Війти</a>&nbsp
+                    <a class="btn btn-light action-button" role="button" href="{% url 'shop:register' %}">Зареєструватися</a>
                     {% endif %}
                 </div>
                 <a class="ott btn btn-primary" href="{% url 'cart:cart_detail' %}" role="button">
@@ -66,7 +66,7 @@
                             <div class="dropdown-custom">
                                 <a href="{% url 'cart:cart_detail' %}" class="nav-link text-black drop-btn">
                                     <i class="fas fa-shopping-cart"></i>
-                                    ₽<span id="cart_price">{{ cart_total_price }}</span>
+                                    ₴<span id="cart_price">{{ cart_total_price }}</span>
                                 </a>
                             </div>
                         </li>
@@ -82,8 +82,8 @@
     <header class="bg-dark py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
-                <h1 class="display-2"><span style="color:#0d6efd"><b> SPORT </b></span> SHOP</h1>
-                <p class="lead text-white-50 mb-0">Удобный и стильный образ для спорта на каждый день.</p>
+                <h1 class="display-2"><span style="color:#0d6efd"><b> Mega </b></span> Sport</h1>
+                <p class="lead text-white-50 mb-0">Зручний та стильний образ для спорту на кожен день.</p>
             </div>
         </div>
     </header>
@@ -100,7 +100,7 @@
         <ul class="pagination justify-content-center">
             {% if page_obj.has_previous %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Попередня</a>
             </li>
             {% endif %}
             {% for p in paginator.page_range %}
@@ -116,7 +116,7 @@
             {% endfor %}
             {% if page_obj.has_next %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Следующая</a>
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Наступна</a>
             </li>
             {% endif %}
         </ul>
@@ -126,14 +126,7 @@
 
 </div>
 
-<!-- Footer-->
-<footer class="py-5 bg-dark footer">
-    <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Django website by Andrey Naletov 2022
-        </p>
-    </div>
-</footer>
-<!-- End footer-->
+<
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

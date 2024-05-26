@@ -17,26 +17,26 @@
                 <div class="top">
                     <h2 class="mt-4 font-weight-bold text-grey">{{ product.name }}</h2>
                     <div>
-                        <span class="font-weight-bold text-grey">Категория:</span>
+                        <span class="font-weight-bold text-grey">Категорія:</span>
                         <a href="{{ product.category.get_absolute_url }}"> {{ product.category }}</a>
                     </div>
                     <div>
-                        <span class="font-weight-bold text-grey">Цена: <span class="price">₽ {{ product.price }}</span></span>
+                        <span class="font-weight-bold text-grey">Ціна: <span class="price">₴ {{ product.price }}</span></span>
                     </div>
                 </div>
                 <div class="mt-3">
                     {{ product.description }}
                 </div>
                 {% if product.available %}
-                    <div class="alert alert-success my-3 text-center">В наличии</div>
+                    <div class="alert alert-success my-3 text-center">В наявності</div>
                 {% else %}
-                    <div class="alert alert-danger my-3 text-center">Временно недоступен</div>
+                    <div class="alert alert-danger my-3 text-center">Недоступно</div>
                 {% endif %}
                 <hr>
                 <div class="review">
-                    <span class="font-weight-bold text-grey">Средний рейтинг: {{ product.get_average_review_score }}/5.0</span>
+                    <span class="font-weight-bold text-grey">Средній рейтинг: {{ product.get_average_review_score }}/5.0</span>
                     <div class="mb-3 font-weight-bold">
-                        <a href="" class="text-warning" data-toggle="modal" data-target="#myModal">Оставить отзыв</a>
+                        <a href="" class="text-warning" data-toggle="modal" data-target="#myModal">Залишити відгук</a>
                     </div>
                 </div>
                 <div class="mb-4">
@@ -44,7 +44,7 @@
                         {% csrf_token %}
                         <span class="input-group add-to-cart shadow-custom">
                             <div class="input-group-prepend">
-                                <span class="input-group-text font-weight-bold px-3 price">₽{{ product.price }}</span>
+                                <span class="input-group-text font-weight-bold px-3 price">₴{{ product.price }}</span>
                             </div>
                             {{ cart_product_form.quantity }}
                             <div class="input-group-append">
@@ -58,17 +58,7 @@
             </div>
         </div>
     </div>
-    <hr class="col-7 mx-auto">
-    <div class="card shadow-custom border-0 col-lg-8 mx-auto mb-3">
-        <h3 class="py-2 text-grey">Отзывы:</h3>
-        {% for review in product.reviews.all %}
-            <span class="font-weight-bold py-2 text-grey">{{ review.author }} - {{ review.rating }}/5 - {{ review.created|date }}</span>
-            <span class="text-justify pb-2">{{ review.text }}</span>
-            <hr>
-        {% empty %}
-            <span class="pb-2">Пока нет отзывов</span>
-        {% endfor %}
-    </div>
+
 
 <!-- REWIEW MODAL WINDOW -->
 <div class="modal" id="myModal">

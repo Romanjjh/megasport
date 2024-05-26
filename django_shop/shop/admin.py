@@ -29,4 +29,4 @@ class ProductAdmin(admin.ModelAdmin):
             return mark_safe(
                 f"<img src='{object.image.url}' width=65>")  # ф-ия mark_safe позволяет не экранировать то, что мы в нее передаем
 
-    get_html_photo.short_description = 'Миниатюра '
+    get_html_photo.short_description = ' '

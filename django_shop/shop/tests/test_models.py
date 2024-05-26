@@ -31,10 +31,10 @@ class CategoryModelTest(TestCase):
         self.assertEqual(list(categories), [categories[0], categories[1], self.category])
 
     def test_category_meta_verbose_name(self):
-        self.assertEqual(Category._meta.verbose_name, 'Категории')
+        self.assertEqual(Category._meta.verbose_name, 'Категорії')
 
     def test_category_meta_verbose_name_plural(self):
-        self.assertEqual(Category._meta.verbose_name_plural, 'Категории')
+        self.assertEqual(Category._meta.verbose_name_plural, 'Категорії')
 
 
 class ProductModelTest(TestCase):

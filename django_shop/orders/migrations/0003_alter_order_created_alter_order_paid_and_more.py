@@ -15,27 +15,27 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='order',
             name='created',
-            field=models.DateTimeField(auto_now_add=True, verbose_name='Дата создания'),
+            field=models.DateTimeField(auto_now_add=True, verbose_name='Дата створення'),
         ),
         migrations.AlterField(
             model_name='order',
             name='paid',
-            field=models.BooleanField(default=False, verbose_name='Оплачен ли заказ'),
+            field=models.BooleanField(default=False, verbose_name='Чи оплачено замовлення'),
         ),
         migrations.AlterField(
             model_name='order',
             name='updated',
-            field=models.DateTimeField(auto_now=True, verbose_name='Дата обновления'),
+            field=models.DateTimeField(auto_now=True, verbose_name='Дата обновлення'),
         ),
         migrations.AlterField(
             model_name='orderitem',
             name='order',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='items', to='orders.order', verbose_name='Заказ'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='items', to='orders.order', verbose_name='Замовлення'),
         ),
         migrations.AlterField(
             model_name='orderitem',
             name='price',
-            field=models.DecimalField(decimal_places=2, max_digits=10, verbose_name='Цена'),
+            field=models.DecimalField(decimal_places=2, max_digits=10, verbose_name='Ціна'),
         ),
         migrations.AlterField(
             model_name='orderitem',
@@ -45,6 +45,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='orderitem',
             name='quantity',
-            field=models.PositiveIntegerField(default=1, verbose_name='Количество'),
+            field=models.PositiveIntegerField(default=1, verbose_name='Кількість'),
         ),
     ]

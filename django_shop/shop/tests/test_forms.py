@@ -82,7 +82,7 @@ class LoginUserFormTest(TestCase):
         user = authenticate(username=self.invalid_data['username'], password=self.invalid_data['password'])
         self.assertIsNone(user)
         self.assertContains(response,
-                            'Пожалуйста, введите правильные имя пользователя и пароль. Оба поля могут быть чувствительны к регистру.')
+                            ', введите правильные имя пользователя и пароль. Оба поля могут быть чувствительны к регистру.')
 
 
 class FeedbackFormTest(TestCase):

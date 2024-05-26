@@ -5,26 +5,26 @@
 {% block content %}
 <div>
     <h3 class="py-2 font-weight-bold text-grey text-center">
-        Ваш заказ:
+        Ваше замовлення:
     </h3>
     <div class="row py-2 text-center header-desc">
         <div class="col-lg-2 align-self-center">
             Продукт
         </div>
         <div class="col-lg-2 align-self-center">
-            Описание
+            Опис
         </div>
         <div class="col-lg-2 align-self-center">
-            Доступность
+            Доступність
         </div>
         <div class="col-lg-1 align-self-center">
-            Цена
+            Ціна
         </div>
         <div class="col-lg-2 align-self-center">
-            Количество
+            Кількість
         </div>
         <div class="col-lg-3 align-self-center">
-            Итоговая цена
+            Фінальна ціна
         </div>
     </div>
     <hr class="mt-0">
@@ -42,16 +42,16 @@
                 <div class="cart-item col-12 col-lg-2 align-self-center">
                     {% if product.available %}
                         <div class="text-green mb-0 text-center">
-                            Доступен
+                            Доступно
                         </div>
                     {% else %}
                         <div class="text-danger mb-0 text-center">
-                            Временно недоступен
+                             Недоступно
                         </div>
                     {% endif %}
                 </div>
                 <div class="cart-item col-12 col-sm-3 col-lg-1 align-self-center text-center">
-                    <span>₽{{ product.price }}</span>
+                    <span>₴{{ product.price }}</span>
                 </div>
                 <div class="cart-item col-6 col-sm-5 col-lg-2 align-self-center">
                     <form action="{% url 'cart:cart_add' product.id %}" method="post">
@@ -68,7 +68,7 @@
                     </form>
                 </div>
                 <div class="cart-item col-12 col-sm-3 col-lg-2 align-self-center text-right">
-                    <span>₽{{ item.total_price }}</span>
+                    <span>₴{{ item.total_price }}</span>
                 </div>
                 <div class="cart-item col-12 col-lg-1 text-right align-self-center">
                     <form action="{% url 'cart:cart_remove' product.id %}" method="post">
@@ -91,7 +91,7 @@
 <div class="total-price-cart">
     <h4 class="row justify-content-center">
         <div>
-            Итоговая цена:  <span class="text-danger"> ₽ {{ cart_total_price|floatformat:2 }}</span>
+            Фінальна ціна:  <span class="text-danger"> ₴ {{ cart_total_price|floatformat:2 }}</span>
         </div>
         <div class="col-2 col-lg-1">
         </div>
@@ -104,10 +104,10 @@
         <div class="col-lg-6 px-0">
             <div class="btn-group d-flex">
                 <a href="{% url 'shop:product_list' %}" class="btn btn-warning shadow-custom col">
-                    Вернуться назад
+                    Вернутися назад
                 </a>
                 <a href="{% url 'orders:order_create' %}" class="btn btn-danger shadow-custom col">
-                    Оформить заказ
+                    Оформити замовлення
                 </a>
             </div>
         </div>
@@ -115,7 +115,7 @@
         <div class="col-lg-3 px-0">
             <div class="btn-group d-flex">
                 <a href="{% url 'shop:product_list' %}" class="btn btn-warning shadow-custom col">
-                    Вернуться назад
+                    Вернутися назад
                 </a>
             </div>
         </div>

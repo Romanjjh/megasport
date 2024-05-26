@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='product',
             name='available',
-            field=models.BooleanField(default=True, verbose_name='Доступность'),
+            field=models.BooleanField(default=True, verbose_name='Доступність'),
         ),
         migrations.AlterField(
             model_name='review',
@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='review',
             name='created',
-            field=models.DateTimeField(auto_now_add=True, verbose_name='Дата создания'),
+            field=models.DateTimeField(auto_now_add=True, verbose_name='Дата стоверення'),
         ),
         migrations.AlterField(
             model_name='review',

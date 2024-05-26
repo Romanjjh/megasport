@@ -6,14 +6,14 @@ from django.core.exceptions import ValidationError
 
 class Category(models.Model):
     """Модель для категорий товаров"""
-    name = models.CharField(max_length=255, verbose_name='Имя категории')
+    name = models.CharField(max_length=255, verbose_name='Имя категорії')
     slug = models.SlugField(unique=True)
 
     class Meta:
         """Используем для задания параметров в админке, без необходимости добавления новых полей в саму модель. """
         ordering = ('name',)  # сортировка применяется и в отображении в админке и в шаблонах
-        verbose_name = 'Категории'
-        verbose_name_plural = 'Категории'
+        verbose_name = 'Категорії'
+        verbose_name_plural = 'Категорії'
 
     def __str__(self):
         return self.name
@@ -24,17 +24,17 @@ class Category(models.Model):
 
 class Product(models.Model):
     """Модель товаров"""
-    category = models.ForeignKey(Category, verbose_name='Категория', on_delete=models.CASCADE)
-    title = models.CharField(max_length=255, verbose_name='Наименование')
+    category = models.ForeignKey(Category, verbose_name='Категорія', on_delete=models.CASCADE)
+    title = models.CharField(max_length=255, verbose_name='Назва')
     slug = models.SlugField(unique=True)
-    image = models.ImageField(verbose_name='Изображение')
-    description = models.TextField(verbose_name='Описание', null=True)
-    price = models.DecimalField(max_digits=9, decimal_places=2, verbose_name='Цена')
-    available = models.BooleanField(default=True, verbose_name='Доступность')
+    image = models.ImageField(verbose_name='Зображення')
+    description = models.TextField(verbose_name='Опис', null=True)
+    price = models.DecimalField(max_digits=9, decimal_places=2, verbose_name='Ціна')
+    available = models.BooleanField(default=True, verbose_name='Доступність')
 
     class Meta:
-        verbose_name = 'Товары'  # отображение названия в админке
-        verbose_name_plural = 'Товары'  # отображение названия в админке
+        verbose_name = 'Товари'  # отображение названия в админке
+        verbose_name_plural = 'Товари'  # отображение названия в админке
         ordering = ('title',)
 
     def __str__(self):
@@ -60,12 +60,12 @@ class Review(models.Model):
     author = models.CharField(max_length=50, verbose_name='Автор')
     rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], verbose_name='Рейтинг')
     text = models.TextField(blank=True, verbose_name='Текст')
-    created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    created = models.DateTimeField(auto_now_add=True, verbose_name='Дата створення')
 
     class Meta:
         ordering = ('-created', )
 
     def save(self, *args, **kwargs):
         if self.rating > 5 or self.rating < 1:
-            raise ValidationError("Неверный рейтинг")
+            raise ValidationError("Неправильний рейтинг")
         super().save(*args, **kwargs)

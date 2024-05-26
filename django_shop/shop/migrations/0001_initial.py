@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             name='Category',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255, verbose_name='Имя категории')),
+                ('name', models.CharField(max_length=255, verbose_name='Імя категорії')),
                 ('slug', models.SlugField(unique=True)),
             ],
             options={
@@ -27,13 +27,13 @@ class Migration(migrations.Migration):
             name='Product',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=255, verbose_name='Наименование')),
+                ('title', models.CharField(max_length=255, verbose_name='Назва')),
                 ('slug', models.SlugField(unique=True)),
-                ('image', models.ImageField(upload_to='', verbose_name='Изображение')),
-                ('description', models.TextField(null=True, verbose_name='Описание')),
-                ('price', models.DecimalField(decimal_places=2, max_digits=9, verbose_name='Цена')),
+                ('image', models.ImageField(upload_to='', verbose_name='Зображення')),
+                ('description', models.TextField(null=True, verbose_name='Опис')),
+                ('price', models.DecimalField(decimal_places=2, max_digits=9, verbose_name='Ціна')),
                 ('available', models.BooleanField(default=True)),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='shop.category', verbose_name='Категория')),
+                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='shop.category', verbose_name='Категорія')),
             ],
             options={
                 'ordering': ('title',),

@@ -28,8 +28,8 @@ class Migration(migrations.Migration):
                 ('paid', models.BooleanField(default=False)),
             ],
             options={
-                'verbose_name': 'заказ',
-                'verbose_name_plural': 'заказы',
+                'verbose_name': 'замовлення',
+                'verbose_name_plural': 'замовлення',
                 'ordering': ('-created',),
             },
         ),
